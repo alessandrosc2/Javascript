@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula de Javascript</title>
+</head>
+<style>
+    body {
+        background-color: lightseagreen;
+        color: white;
+        font: normal 20px Arial;
+    }
+</style>
+<body>
+    <h1>Aula de Javascript</h1>
+    <h2>Manipular números, converter moedas, mudar ponto por vírgula etc...</h2>
+    <script>
+        var n1 = Number(prompt('Digite um número, exemplo = 1854.2'))
+        var dol = 4.81
+        var n2 = n1 / dol 
+        
+        document.write(`Seu número com duas casas decimais fica ${n1.toFixed(2)}<br><br>`)
+        document.write(`Vírgula no lugar do ponto no final ${n1.toFixed(2).replace('.' , ',')}<br><br>`)
+        document.write(`Fomatando para real BRL ${n1.toLocaleString('pt-BR', {style:'currency', currency:'BRL'})}<br><br>`)
+        document.write(`Fomatando para Dólar USD ${n1.toLocaleString('pt-BR', {style:'currency', currency:'USD'})}<br><br>`)
+        document.write(`Fomatando para euro EUR ${n1.toLocaleString('pt-BR', {style:'currency', currency:'EUR'})}<br><br>`)
+        document.write(`Seu valor em real BRL, convertido para dólar fica ${n2.toLocaleString('pt-BR', {style:'currency', currency:'USD'})}<br><br>`)
+    </script>
+</body>
+</html>
