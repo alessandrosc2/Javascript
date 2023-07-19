@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula de Javascript</title>
+</head>
+<style>
+    body {
+        background-color: lightseagreen;
+        color: white;
+        font: normal 20px Arial;
+        font-family: 'Courier New', Courier, monospace;
+    }
+</style>
+<body>
+    <h1>Iniciando Estudos de Javascript - DOM</h1>
+    <p>Aqui vai o resultado</p>
+    <p>Aprendendo a usar <strong>DOM</strong> em Javascript</p><br>
+    <div id="msg">Clique Aqui</div>
+    <div class="msg">Teste com classes</div>
+    <script>
+        var corpo = document.body
+        var p1 = document.getElementsByTagName('p')[1]
+        var d = document.getElementById('msg')
+        
+        d.style.background = 'blue'
+        d.style.color = 'bisque'
+        d.innerText = 'Aguarde alguns segundos...'
+        document.write(p1.innerHTML)
+        var dv = document.querySelector('div.msg')
+        dv.style.background = 'black'
+
+    </script>
+</body>
+</html>
