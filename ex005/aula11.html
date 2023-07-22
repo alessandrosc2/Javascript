@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula de Javascript</title>
+    <style>
+        body {
+            background-color: lightseagreen;
+            color: white;
+            font: normal 20px Arial;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    
+    </style>
+</head>
+<body>
+    <h1>NACIONALIDADE - BRASILEIRO OU GRINGO</h1>
+    Em que país você mora? <input type="text" name="nac" id="nac">
+    <input type="button" value="Verificar" onclick="nacionalidade()">
+    <div id="res">
+
+    </div>
+    <script>
+        function nacionalidade() {
+            var nacion = document.getElementById('nac').value;
+            var res = document.getElementById('res');
+            res.innerHTML = `<p>Sua nacionalidade é <strong>${nacion}</strong></p>`;
+            if (nacion !== 'Brasil') {
+                res.innerHTML += `<p>Você é <strong>ESTRANGEIRO</strong> mora em ${nacion}, um outro país!</p>`;
+            } else {
+                res.innerHTML += `<p>Você é Brasileiro!</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
