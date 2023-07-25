@@ -1,8 +1,8 @@
 @charset "UTF-8";
 
 body {
-    background: lightseagreen;
-    font: normal 15pt Arial;
+    background: linear-gradient(90deg, rgb(41, 160, 154), #7503b8, #0000ff);
+    font-family: 'Courier New', Courier, monospace;
 }
 
 header {
@@ -26,8 +26,8 @@ footer {
 }
 
 section p {
-    background-color: aqua;
+    background: linear-gradient(90deg, rgb(41, 160, 154), #7503b8, #0000ff);
     font-size: 25px;
-    color: rgb(8, 15, 112);
+    color: rgb(220, 220, 233);
     text-align: center;
 }
