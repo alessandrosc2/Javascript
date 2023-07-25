@@ -93,3 +93,67 @@
       tabuadaSubtrairElement.appendChild(linha);
     }
   }
+
+  function calcular() {
+    const numero1Input = document.getElementById("numero1");
+    const numero2Input = document.getElementById("numero2");
+    const operadorInput = document.getElementById("operador");
+    const resultadoElement = document.getElementById("resultado");
+
+    const numero1 = Number(numero1Input.value);
+    const numero2 = Number(numero2Input.value);
+    const operador = operadorInput.value;
+
+    let resultado;
+
+    switch (operador) {
+      case "+":
+        resultado = numero1 + numero2;
+        break;
+      case "-":
+        resultado = numero1 - numero2;
+        break;
+      case "*":
+        resultado = numero1 * numero2;
+        break;
+      case "/":
+        resultado = numero1 / numero2;
+        break;
+      default:
+        resultado = "Operador inválido!";
+    }
+
+    resultadoElement.textContent = `Resultado: ${resultado}`;
+  }
+
+  function calcularRaizQuadrada() {
+    const raizInput = document.getElementById("raiz");
+    const resultElement = document.getElementById("result");
+
+    const raiz = Number(raizInput.value);
+
+    if (raiz < 0) {
+      resultElement.textContent = "Não é possível calcular a raiz de um número negativo!";
+    } else {
+      const raizQuadrada = Math.sqrt(raiz);
+      resultElement.textContent = `Raiz Quadrada de ${raiz}: ${raizQuadrada.toFixed(2)}`;
+    }
+  }
+
+  function calcularPorcentagem() {
+    const porcem = parseFloat(document.getElementById('porcem').value);
+    const porcentagem = parseFloat(document.getElementById('porcentagem').value);
+
+    if (isNaN(porcem) || isNaN(porcentagem)) {
+        alert("Por favor, insira valores numéricos válidos.");
+        return;
+    }
+
+    const resultad = porcem * (porcentagem / 100);
+    const resultadoSobra = porcem - resultad;
+    document.getElementById('resultad').textContent = `Resultado: ${resultad.toFixed(2)}`;
+    document.getElementById('resultadoSobra').textContent = `Sobra: ${resultadoSobra.toFixed(2)}`;
+}
+
+
+
