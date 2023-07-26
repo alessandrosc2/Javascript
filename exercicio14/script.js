@@ -155,5 +155,23 @@
     document.getElementById('resultadoSobra').textContent = `Sobra: ${resultadoSobra.toFixed(2)}`;
 }
 
+function calcularFatorial() {
+  const fatInput = document.getElementById("fat");
+  const resultaElement = document.getElementById("resulta");
 
+  const fat = Number(fatInput.value);
+
+  if (fat < 0) {
+    resultaElement.textContent = "O fatorial não é definido para números negativos.";
+    return;
+  }
+
+  let fatorial = 1;
+
+  for (let i = 1; i <= fat; i++) {
+    fatorial *= i;
+  }
+
+  resultaElement.textContent = `Fatorial de ${fat} = ${fatorial}`;
+}
 
