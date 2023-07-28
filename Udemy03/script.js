@@ -50,3 +50,8 @@ console.log(Math.min(3, 5, 50, 140, 420, 2300, 941))
 const aleatorio = Math.round(Math.random() * (10 - 5) + 5) // gerando entre 1 e 10
 console.log(aleatorio)
 
+// pegando raiz quadrada de qualquer número
+
+let raiz = 16 // só precisa trocar aqui
+console.log(raiz ** 0.5)
+
