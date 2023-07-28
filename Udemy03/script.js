@@ -30,3 +30,17 @@ numb = parseFloat(numb.toFixed(2)) // pode-se usar Number também no lugar do pa
 
 console.log(numb)
 
+// arredondando números para cima ou para baixo
+let arredon = 9.83409558
+
+console.log(Math.floor(arredon))  // para baixo
+
+console.log(Math.ceil(arredon)) // para cima
+
+console.log(Math.round(arredon)) // arredonda para o mais próximo, ex: .50 acima 
+
+// pegando maior número e menor número
+
+console.log(Math.max(3, 5, 50, 140, 420, 2300, 941))
+
+console.log(Math.min(3, 5, 50, 140, 420, 2300, 941))
