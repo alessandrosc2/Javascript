@@ -44,3 +44,9 @@ console.log(Math.round(arredon)) // arredonda para o mais próximo, ex: .50 acim
 console.log(Math.max(3, 5, 50, 140, 420, 2300, 941))
 
 console.log(Math.min(3, 5, 50, 140, 420, 2300, 941))
+
+// gerando números aleatórios
+
+const aleatorio = Math.round(Math.random() * (10 - 5) + 5) // gerando entre 1 e 10
+console.log(aleatorio)
+
