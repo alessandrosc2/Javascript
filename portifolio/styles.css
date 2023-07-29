@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: black;
+  }
+  
+  .domino-line {
+    width: 100%;
+    height: 5px;
+    background-color: yellow;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    transform-origin: left;
+    transform: scaleX(0);
+    animation: dominoEffect 2s forwards;
+  }
+
+
+  @keyframes dominoEffect {
+    100% {
+      transform: scaleX(1);
+    }
+  }
+  
+  .menu-container {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 80px;
+    right: 0;
+  }
+  
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90px;
+    background-color: #1d1c1c;
+    padding: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    margin-bottom: 10px;
+  }
+  
+  .menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  
+  /* Estilos para dispositivos móveis */
+  .menu-toggle {
+    display: none; /* Oculta o ícone do menu em telas maiores */
+  }
+  
+  @media screen and (max-width: 768px) {
+    .menu-toggle {
+      display: block; /* Mostra o ícone do menu em telas menores */
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  
+    .bar {
+      width: 30px;
+      height: 5px;
+      background-color: #333;
+      margin: 6px 0;
+      transition: transform 0.3s ease;
+    }
+  
+    /* Efeito do ícone de sanduíche ao ser clicado */
+    .menu-open .bar:nth-child(1) {
+      transform: rotate(-45deg) translate(-9px, 6px);
+    }
+  
+    .menu-open .bar:nth-child(2) {
+      opacity: 0;
+    }
+  
+    .menu-open .bar:nth-child(3) {
+      transform: rotate(45deg) translate(-9px, -6px);
+    }
+  
+    .menu {
+      width: 100%; /* Menu ocupando a largura total em telas menores */
+      transform: translateX(100%); /* Esconde o menu à direita em telas menores */
+      background-color: #222;
+      z-index: 1;
+    }
+  
+    .menu-open {
+      transform: translateX(0); /* Mostra o menu à direita em telas menores */
+    }
+  
+    .menu li {
+      margin: 0;
+      text-align: center;
+    }
+
+
+  }
+
+
+  
+  
+  
+  
+  
