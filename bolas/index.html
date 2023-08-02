@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Projeto de Portfólio</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+
+    #animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    .top-line {
+      position: absolute;
+      top: 50px;
+      width: 100%;
+      height: 2px;
+      background-color: yellow;
+    }
+
+    .bottom-line {
+      position: absolute;
+      bottom: 50px;
+      width: 100%;
+      height: 2px;
+      background-color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-line"></div>
+  <canvas id="animation"></canvas>
+  <div class="bottom-line"></div>
+
+  <script>
+    var canvas = document.getElementById("animation");
+    var ctx = canvas.getContext("2d");
+    var positionX = 0;
+    var positionY = 0;
+    var balls = [];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight - 100;
+
+    document.addEventListener("mousemove", function(event) {
+      positionX = event.clientX;
+      positionY = event.clientY;
+    });
+
+    document.addEventListener("mousedown", function(event) {
+      createBall();
+    });
+
+    function createBall() {
+      var ball = {
+        x: positionX,
+        y: positionY,
+        radius: Math.random() * 20 + 10,
+        vy: Math.random() * 2 + 1,
+        color: getRandomColor(),
+        gradient: null
+      };
+
+      ball.gradient = ctx.createRadialGradient(ball.x, ball.y, 0, ball.x, ball.y, ball.radius);
+      ball.gradient.addColorStop(0, "white");
+      ball.gradient.addColorStop(1, ball.color);
+
+      balls.push(ball);
+    }
+
+    function getRandomColor() {
+      var letters = "0123456789ABCDEF";
+      var color = "#";
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      for (var i = 0; i < balls.length; i++) {
+        var ball = balls[i];
+
+        ball.y += ball.vy;
+        ball.vy += 0.05;
+
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fillStyle = ball.gradient;
+        ctx.strokeStyle = ball.color;
+        ctx.lineWidth = 2;
+        ctx.fill();
+        ctx.stroke();
+
+        if (ball.y + ball.radius >= canvas.height) {
+          ball.y = canvas.height - ball.radius;
+          ball.vy *= -0.8;
+        }
+
+        for (var j = i - 1; j >= 0; j--) {
+          var otherBall = balls[j];
+          var distance = Math.sqrt(Math.pow(ball.x - otherBall.x, 2) + Math.pow(ball.y - otherBall.y, 2));
+          var minDistance = ball.radius + otherBall.radius;
+
+          if (distance <= minDistance) {
+            var angle = Math.atan2(ball.y - otherBall.y, ball.x - otherBall.x);
+            var offsetX = Math.cos(angle) * (minDistance - distance);
+            var offsetY = Math.sin(angle) * (minDistance - distance);
+
+            ball.x += offsetX;
+            ball.y += offsetY;
+          }
+        }
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    draw();
+  </script>
+</body>
+</html>
