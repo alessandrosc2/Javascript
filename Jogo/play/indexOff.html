@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Jogo de Carros</title>
+  <style>
+    /* Estilos CSS podem ser adicionados aqui */
+  </style>
+</head>
+<body>
+  <button id="jumpButton">Pular</button>
+<button id="moveUpButton">Mover para cima</button>
+<button id="moveDownButton">Mover para baixo</button>
+
+  <canvas id="gameCanvas" width="800" height="600"></canvas>
+<script>
+  var roadImage = new Image();
+roadImage.src = "img/estrada.jpg"; // Substitua pelo caminho correto da imagem da estrada
+
+</script>
+  <script>
+    var canvas = document.getElementById("gameCanvas");
+var ctx = canvas.getContext("2d");
+
+// Desenha o cenário
+function drawScene() {
+  // Preencha o fundo com uma cor
+  ctx.fillStyle = "#d3d3d3";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Desenhe a estrada
+  ctx.fillStyle = "#808080";
+  ctx.drawImage(roadImage, 200, 0, canvas.width - 400, canvas.height);
+
+
+  // Desenhe a linha central da estrada
+  ctx.beginPath();
+  ctx.setLineDash([10, 10]);
+  ctx.strokeStyle = "#fff";
+  ctx.lineWidth = 5;
+  ctx.moveTo(canvas.width / 2, 0);
+  ctx.lineTo(canvas.width / 2, canvas.height);
+  ctx.stroke();
+}
+
+drawScene();
+
+  </script>
+  <script>
+    var car = {
+  x: 250, // posição inicial do carro no eixo x
+  y: canvas.height - 100, // posição inicial do carro no eixo y
+  width: 50,
+  height: 100,
+  speed: 5 // velocidade de movimento do carro
+};
+
+// Desenha o carro
+function drawCar() {
+  ctx.fillStyle = "red";
+  ctx.fillRect(car.x, car.y, car.width, car.height);
+}
+
+// Função principal de renderização
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+// Move o cenário
+ctx.drawImage(roadImage, 200 - car.x, 0, canvas.width - 400, canvas.height);
+
+  // Limpa o canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Desenha o cenário
+  drawScene();
+
+  // Desenha o carro
+  drawCar();
+
+  // Atualiza a posição do carro
+  updateCarPosition();
+
+  // Chama a função novamente para animar o jogo
+  requestAnimationFrame(draw);
+}
+
+// Inicia o jogo
+draw();
+
+  </script>
+  <script>
+    
+    var hole = {
+  x: 500, // posição inicial do buraco no eixo x
+  y: canvas.height - 30, // posição inicial do buraco no eixo y
+  width: 50,
+  height: 30
+};
+
+// Desenha o buraco
+function drawHole() {
+  ctx.fillStyle = "black";
+  ctx.fillRect(hole.x, hole.y, hole.width, hole.height);
+}
+
+// Verifica se houve colisão entre o carro e o buraco
+function checkCollision() {
+  if (
+    car.x < hole.x + hole.width &&
+    car.x + car.width > hole.x &&
+    car.y < hole.y + hole.height &&
+    car.y + car.height > hole.y
+  ) {
+    // Colisão detectada, o carro pula o buraco
+    car.y -= 50; // Altere a altura do salto conforme necessário
+  }
+}
+
+// Atualiza a posição do buraco
+function updateHolePosition() {
+  hole.x -= car.speed;
+  if (hole.x + hole.width < 0) {
+    hole.x = canvas.width;
+  }
+}
+
+// Função principal de renderização
+function draw() {
+
+  // Limpa o canvas
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Desenha o cenário
+  drawScene();
+
+  // Desenha o buraco
+  drawHole();
+
+  // Desenha o carro
+  drawCar();
+
+  // Verifica colisão com o buraco
+  checkCollision();
+
+  // Atualiza a posição do buraco
+  updateHolePosition();
+
+  // Atualiza a posição do carro
+  updateCarPosition();
+
+  // Chama a função novamente para animar o jogo
+  requestAnimationFrame(draw);
+}
+
+  </script>
+  <script>
+    // Obtém referências para os botões
+var jumpButton = document.getElementById("jumpButton");
+var moveUpButton = document.getElementById("moveUpButton");
+var moveDownButton = document.getElementById("moveDownButton");
+
+// Lida com o evento de clique no botão de pular
+jumpButton.addEventListener("click", function () {
+  car.y -= 50; // Altere a altura do salto conforme necessário
+});
+
+// Lida com o evento de clique no botão de mover para cima
+moveUpButton.addEventListener("click", function () {
+  car.y -= 20; // Altere a quantidade de movimento vertical conforme necessário
+});
+
+// Lida com o evento de clique no botão de mover para baixo
+moveDownButton.addEventListener("click", function () {
+  car.y += 20; // Altere a quantidade de movimento vertical conforme necessário
+});
+
+  </script>
+  <script>
+    var carImage = new Image();
+carImage.src = "img/carro1.png"; // Substitua pelo caminho correto da imagem do carro
+
+// Desenha o carro
+function drawCar() {
+  ctx.drawImage(carImage, car.x, car.y, car.width, car.height);
+}
+
+  </script>
+  <script>
+    carImage.onload = function () {
+  draw();
+};
+
+  </script>
+  <style type="text/css">
+    #game-container {
+  position: relative;
+  width: 400px;
+  height: 600px;
+  overflow: hidden;
+  border: 1px solid black;
+}
+
+#road {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: gray;
+  background-image: repeating-linear-gradient(to bottom, white 0, white 10px, black 10px, black 20px);
+  background-size: 100% 20px;
+  animation: road-movement 2s linear infinite;
+}
+
+@keyframes road-movement {
+  from {
+    top: 0;
+  }
+  to {
+    top: -600px;
+  }
+}
+
+#car {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 100px;
+  background-color: red;
+}
+
+  </style>
+</body>
+</html>

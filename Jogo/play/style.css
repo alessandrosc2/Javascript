@@ -1,0 +1,220 @@
+    #game-container {
+      position: relative;
+      width: 500px;
+      height: 650px;
+      overflow: hidden;
+      border: 1px solid black;
+      background-color: green; /* Cor da grama */
+      margin-left: 30%;
+    }
+
+    #road {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 100%;
+      background-color: gray;
+      display: flex;
+      align-items: flex-end;
+    }
+
+    .lane {
+      width: calc(50% - 5px);
+      height: 50px;
+      background-color: #666;
+    }
+
+    .center-line {
+      width: 1px;
+      height: 100%;
+      background-color: white;
+      border-left: 10px dotted white; /* Estilo da linha pontilhada */
+      border-spacing: 10px; /* Ajuste o espaçamento dos pontos conforme necessário */
+      position: relative;
+      overflow: hidden;
+      left: 50%;
+      transform: translateX(-50%);
+      background-size: 28px 5px; /* Ajuste o espaçamento entre os pontos */
+      background-image: repeating-linear-gradient(to right, transparent, transparent 4px, white 4px, white 8px); /* Defina o padrão de pontos */
+      animation: line-movement 8s linear infinite;
+    }
+
+    @keyframes line-movement {
+      0% {
+        top: 0;
+      }
+      100% {
+        top: 100%;
+      }
+    }
+
+    .tree {
+      position: absolute;
+      top: 50px;
+      left: -28px;
+      width: 40px;
+      height: 180px;
+    }
+
+    .stone {
+      position: absolute;
+      top: 10px;
+      right: -20px;
+      width: 40px;
+      height: 40px;
+    }
+
+    #car {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 200px;
+    }
+
+    #controls {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    button {
+      display: inline-block;
+      margin: 0 10px;
+    }
+  .center-line {
+  width: 2px;
+  height: 100%;
+  background-color: transparent;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 3px dotted white;
+  animation: line-movement 8s linear infinite;
+}
+.center-line, .tree {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: line-movement 10s linear infinite;
+}
+
+.tree {
+  position: absolute;
+  top: 10px;
+  left: -11px; /* Altere o valor da posição left conforme necessário */
+  width: 40px;
+  height: 80px;
+}
+
+.stone {
+  position: absolute;
+  top: 40px;
+  right: 5px; /* Altere o valor da posição right conforme necessário */
+  width: 40px;
+  height: 40px;
+  animation: line-movement 8s linear infinite;
+}
+
+
+.tree, .stone {
+  transition: opacity 0.5s ease;
+}
+
+.tree.hidden, .stone.hidden {
+  opacity: 0;
+}
+.Car {
+  width: 20px; /* Altere o valor da largura conforme necessário */
+  height: 30px; /* Altere o valor da altura conforme necessário */
+}
+.dot {
+  width: 2px; /* Ajuste o tamanho do ponto conforme necessário */
+  height: 6px; /* Ajuste o tamanho do ponto conforme necessário */
+  background-color: white; /* Ajuste a cor do ponto conforme necessário */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: dot-movement 8s linear infinite; /* Adicione a animação */
+}
+
+@keyframes dot-movement {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%; /* Altere a distância vertical percorrida conforme necessário */
+  }
+}
+.glow-on-hover {
+    width: 220px;
+    height: 50px;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+.glow-on-hover:before {
+    content: '';
+    background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+    position: absolute;
+    top: -2px;
+    left:-2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing 20s linear infinite;
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+    border-radius: 10px;
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+body {
+  background-color: #122af2; /* Substitua pelo código de cor desejado */
+}
+#nome {
+  position: fixed;
+  left: 10px; /* Ajuste a distância do canto esquerdo */
+  top: 10px; /* Ajuste a distância do canto superior */
+  color: white;
+  font-size: 70px;
+  font-family: 'Rampart One', cursive;
+}
