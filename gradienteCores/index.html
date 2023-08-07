@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gerador de Texto Neon</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    select {
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+
+    .neon-text {
+      font-size: 80px;
+      font-weight: bold;
+      display: inline-block;
+      text-shadow: 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de;
+      animation: neon-glow 1s ease-in-out infinite alternate;
+    }
+
+    @keyframes neon-glow {
+      from {
+        text-shadow: 0 0 10px #ff00de, 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de;
+      }
+      to {
+        text-shadow: 0 0 20px #ff00de, 0 0 30px #ff00de, 0 0 40px #ff00de, 0 0 50px #ff00de;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Gerador de Texto/Número Colorido</h1>
+
+  <label for="name">Digite até 30 letras ou Números:</label>
+  <input type="text" id="name" placeholder="Digite seu nome" maxlength="30">
+
+  <label for="font">Escolha a fonte:</label>
+  <select id="font">
+    <option value="Arial, sans-serif">Arial</option>
+    <option value="Helvetica, sans-serif">Helvetica</option>
+    <option value="Verdana, sans-serif">Verdana</option>
+    <option value="Georgia, serif">Georgia</option>
+    <option value="Times New Roman, serif">Times New Roman</option>
+    <option value="Courier New, monospace">Courier New</option>
+    <option value="Impact, sans-serif">Impact</option>
+    <option value="Comic Sans MS, cursive">Comic Sans MS</option>
+    <option value="Trebuchet MS, sans-serif">Trebuchet MS</option>
+    <option value="Arial Black, sans-serif">Arial Black</option>
+  </select>
+
+  <label for="gradient">Escolha o gradiente:</label>
+  <select id="gradient">
+    <option value="0,#23ff96,0.25,#59ffb0,0.5,#8fffca,0.75,#c0ffe1,1,#f1fff8">Gradiente 1</option>
+    <option value="0,#dbf9fb,0.25,#d5f0f5,0.5,#cce3f9,0.75,#c6d4f4,1,#bfc6f2">Gradiente 2</option>
+    <option value="0,#ffc9ff,0.25,#ffc8d2,0.5,#fff9c3,0.75,#ceffbd,1,#beffee">Gradiente 3</option>
+    <option value="0,#ec562f,0.25,#f07859,0.5,#f49a82,0.75,#f7bbac,1,#fbddd5">Gradiente 4</option>
+    <option value="0,#ffc0e9,0.25,#f2c2ff,0.5,#cfcaff,0.75,#ccdfff,1,#d8fff6">Gradiente 5</option>
+    <option value="0,#ffc9ff,0.25,#ffc8d2,0.5,#fff9c3,0.75,#ceffbd,1,#beffee">Gradiente 6</option>
+    <option value="0,#a3c3e7,0.25,#c8daee,0.5,#cadeee,0.75,#b9d7ea,1,#d7eff9">Gradiente 7</option>
+    <option value="0,#b4b4af,0.25,#bad5dc,0.5,#e3e8ee,0.75,#d4dfe5,1,#a5b4b9">Gradiente 8</option>
+    <option value="0,#fe2131,0.25,#fe5e69,0.5,#ff8f96,0.75,#ffc3c7,1,#fff2f3">Gradiente 9</option>
+    <option value="0,#ffd2d2,0.25,#cbe2ff,0.5,#fffec8,0.75,#f7d4ff,1,#d9d9d9">Gradiente 10</option>
+  </select>
+
+  <button onclick="generateNeonImage()">Gerar Imagem</button>
+
+  <div id="neonImageContainer"></div>
+
+  <button onclick="downloadNeonImage()">Salvar Imagem</button>
+
+  <script>
+    function generateNeonImage() {
+      var name = document.getElementById("name").value;
+
+      if (name.trim() === "") {
+        alert("Por favor, digite um nome válido.");
+        return;
+      }
+
+      var font = document.getElementById("font").value;
+      var gradientValue = document.getElementById("gradient").value.split(",");
+      
+      var imageContainer = document.getElementById("neonImageContainer");
+      imageContainer.innerHTML = '<canvas id="neonCanvas" width="400" height="200"></canvas>';
+
+      var canvas = document.getElementById("neonCanvas");
+      var context = canvas.getContext("2d");
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.font = "bold 80px " + font;
+      context.textAlign = "center";
+      context.textBaseline = "middle";
+      context.lineWidth = 5;
+      context.lineJoin = "round";
+
+      var gradient = context.createLinearGradient(0, 0, canvas.width, 0);
+      for (var i = 0; i < gradientValue.length; i += 2) {
+        var stopPosition = parseFloat(gradientValue[i]);
+        var color = gradientValue[i + 1];
+        gradient.addColorStop(stopPosition, color);
+      }
+      context.fillStyle = gradient;
+
+      context.shadowBlur = 5;
+      context.shadowColor = "#b4b5b0";
+
+      var textWidth = context.measureText(name).width;
+      var textX = canvas.width / 2;
+      var textY = canvas.height / 2;
+
+      if (textWidth > canvas.width) {
+        var scaleFactor = canvas.width / textWidth;
+        context.font = "bold " + Math.floor(80 * scaleFactor) + "px " + font;
+        textY = canvas.height / 2 + (80 * scaleFactor) / 2;
+        textX = canvas.width / 2;
+      }
+
+      context.strokeText(name, textX, textY);
+      context.fillText(name, textX, textY);
+
+      var image = document.createElement("img");
+      image.src = canvas.toDataURL();
+      image.style.margin = "0 auto";
+
+      imageContainer.innerHTML = "";
+      imageContainer.appendChild(image);
+    }
+
+    function downloadNeonImage() {
+      var image = document.getElementById("neonCanvas").toDataURL();
+      var link = document.createElement("a");
+      link.href = image;
+      link.download = "neon_image.png";
+      link.click();
+    }
+  </script>
+</body>
+</html>
