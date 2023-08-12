@@ -4,9 +4,12 @@
   <title>Cidade com Explosão de Bolinhas Coloridas</title>
   <style>
     body {
-      margin: 0;
-      overflow: hidden;
-    }
+  margin: 0;
+  overflow: hidden;
+  background-image: url('usando1.png');
+  background-size: cover;
+  background-position: center;
+}
     
     canvas {
       position: absolute;
@@ -64,110 +67,8 @@
     }
 
     function draw() {
-      ctx.fillStyle = "black"; // Definir fundo preto
       ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      // Desenhar prédios
-      ctx.strokeStyle = "gray";
-      ctx.lineWidth = 2;
-
-      // Primeiro prédio
-      ctx.beginPath();
-      ctx.moveTo(260, canvas.height - 400);
-      ctx.lineTo(88, canvas.height - 400);
-      ctx.lineTo(88, canvas.height);
-      ctx.lineTo(260, canvas.height);
-      ctx.closePath();
-      ctx.stroke();
-
-      // Segundo prédio
-      ctx.beginPath();
-      ctx.moveTo(570, canvas.height - 300);
-      ctx.lineTo(290, canvas.height - 300);
-      ctx.lineTo(290, canvas.height);
-      ctx.lineTo(570, canvas.height);
-      ctx.closePath();
-      ctx.stroke();
-
-      // Terceiro prédio
-      ctx.beginPath();
-      ctx.moveTo(760, canvas.height - 350);
-      ctx.lineTo(590, canvas.height - 350);
-      ctx.lineTo(590, canvas.height);
-      ctx.lineTo(760, canvas.height);
-      ctx.closePath();
-      ctx.stroke();
-
-      // Quarto prédio
-      ctx.beginPath();
-      ctx.moveTo(1170, canvas.height - 250);
-      ctx.lineTo(790, canvas.height - 250);
-      ctx.lineTo(790, canvas.height);
-      ctx.lineTo(1170, canvas.height);
-      ctx.closePath();
-      ctx.stroke();
-
-      // Quinto prédio
-      ctx.beginPath();
-      ctx.moveTo(1395, canvas.height - 440);
-      ctx.lineTo(1182, canvas.height - 440);
-      ctx.lineTo(1182, canvas.height);
-      ctx.lineTo(1395, canvas.height);
-      ctx.closePath();
-      ctx.stroke();
-
-      // Desenhar janelas
-      ctx.fillStyle = "gray";
-      var windowWidth = 18;
-      var windowHeight = 25;
-      var windowSpacingX = 36;
-      var windowSpacingY = 36;
-
-      // Primeiro prédio
-      for (var i = 0; i < 3; i++) {
-        for (var j = 0; j < 10; j++) {
-          var windowX = 110 + i * (windowWidth + windowSpacingX);
-          var windowY = canvas.height - 360 + j * (windowHeight + windowSpacingY);
-          ctx.fillRect(windowX, windowY, windowWidth, windowHeight);
-        }
-      }
-
-      // Segundo prédio
-      for (var i = 0; i < 5; i++) {
-        for (var j = 0; j < 8; j++) {
-          var windowX = 310 + i * (windowWidth + windowSpacingX);
-          var windowY = canvas.height - 270 + j * (windowHeight + windowSpacingY);
-          ctx.fillRect(windowX, windowY, windowWidth, windowHeight);
-        }
-      }
-
-      // Terceiro prédio
-      for (var i = 0; i < 3; i++) {
-        for (var j = 0; j < 6; j++) {
-          var windowX = 610 + i * (windowWidth + windowSpacingX);
-          var windowY = canvas.height - 320 + j * (windowHeight + windowSpacingY);
-          ctx.fillRect(windowX, windowY, windowWidth, windowHeight);
-        }
-      }
-
-      // Quarto prédio
-      for (var i = 0; i < 7; i++) {
-        for (var j = 0; j < 6; j++) {
-          var windowX = 810 + i * (windowWidth + windowSpacingX);
-          var windowY = canvas.height - 220 + j * (windowHeight + windowSpacingY);
-          ctx.fillRect(windowX, windowY, windowWidth, windowHeight);
-        }
-      }
-
-      // Quinto prédio
-      for (var i = 0; i < 4; i++) {
-        for (var j = 0; j < 10; j++) {
-          var windowX = 1200 + i * (windowWidth + windowSpacingX);
-          var windowY = canvas.height - 385 + j * (windowHeight + windowSpacingY);
-          ctx.fillRect(windowX, windowY, windowWidth, windowHeight);
-        }
-      }
-
+  
 
       // Desenhar rastro de cometa
       for (var i = 0; i < trail.length; i++) {
